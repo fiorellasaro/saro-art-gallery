@@ -1,47 +1,69 @@
 //import { products } from '@chec/commerce.js/features/products';
-import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import Link from 'next/link';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Slide,
+  Typography,
+} from '@material-ui/core';
+import Layout from "../components/Layout";
 import getCommerce from "../utils/commerce";
+import {Alert} from '@material-ui/lab';
 
 export default function Home(props) {
   const { products } = props;
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Saro Art Gallery</title>
-        <meta
-          name="description"
-          content="Online Art Gallery. Developed by Fiorella Saro"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="Home" commercePublicKey={props.commercePublicKey}>
 
-      <main className={styles.main}>
-        {products.map((product) => {
-          return (
-            <div key={product.id}>
-              <img src={product.media.source} alt={product.name} height="80" />
-              <h2>jejeje {product.name}</h2>
-              <p>{product.price.formatted_with_symbol}</p>
-            </div>
-          );
+    {products.length === 0 && <Alert>No product found</Alert>}
+    <Grid container spacing={1}>
+    {products.map((product) => {
+      return(
+        <Grid key={product.id} item md={3}>
+        <Slide direction="up" in={true}>
+          <Card>
+            <Link href={`/products/${product.permalink}`}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt={product.name}
+                  image={product.media.source}
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="body2"
+                    color="textPrimary"
+                    component="p"
+                  >
+                    {product.name}
+                  </Typography>
+                  <Box>
+                    <Typography
+                      variant="body1"
+                      color="textPrimary"
+                      component="p"
+                    >
+                      {product.price.formatted_with_symbol}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </CardActionArea>
+            </Link>
+          </Card>
+        </Slide>
+      </Grid>
+      )
         })}
-      </main>
+    </Grid>
+    </Layout>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+
   );
 }
 
