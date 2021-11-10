@@ -37,9 +37,9 @@ const Navbar = (props) => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <Link href="/">
-            <>
-            <Brand />
-            </>
+            <div className="link-brand">
+              <Brand />
+            </div>
           </Link>
 
 
@@ -50,7 +50,11 @@ const Navbar = (props) => {
             <Link href="/work" activeStyle={{ borderBottom: "2px solid #ffffff"}} >WORK</Link>
             <Link href="/tarot">TAROT</Link>
             <Link href="/about">ABOUT</Link>
-            <Link href="/contact">CONTACT</Link>
+            <Link href="https://t.me/fiorellasaro" > 
+              
+                <a target="_blank">CONTACT</a>
+            </Link>
+            
             <Link
                 href="/cart"
             >
