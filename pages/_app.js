@@ -1,7 +1,7 @@
 import NProgress from 'nprogress';
 import'nprogress/nprogress.css';
 import { StoreProvider } from '../components/Store';
-import '../styles/globals.css';
+import '../styles/globals.scss';
 import Router from 'next/router';
 import { useEffect } from 'react';
 

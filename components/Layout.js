@@ -2,7 +2,8 @@ import { AppBar, CssBaseline, ThemeProvider, Toolbar, Link, Container, Box, Typo
 import  React from 'react';
 import { theme, useStyle } from '../utils/styles';
 import Head from 'next/head';
-import NextLink from 'next/link'
+import NextLink from 'next/link';
+import NavBar from './Navbar/Navbar';
 
 export default function Layout ({
     children,
@@ -24,38 +25,7 @@ export default function Layout ({
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <AppBar 
-                    position="static"
-                    color="primary"
-                    elevation={0}
-                    className= {classes.appBar}
-                >
-                    <Toolbar className={classes.toolbar}>
-                        <NextLink href="/">
-                            <Link
-                                variant="h6"
-                                color="inherit"
-                                noWrap
-                                href="/"
-                                className={classes.toolbarTitle}
-                            >
-                            Saro Art Gallery
-                            </Link>
-                        </NextLink>
-                        <nav>
-                            <NextLink  href="/cart">
-                                <Link
-                                    variant="button"
-                                    color="inherit"
-                                    href="/cart"
-                                    className={classes.link}
-                                >
-                                Cart
-                                </Link>
-                            </NextLink>
-                        </nav>
-                    </Toolbar>
-                </AppBar>
+                <NavBar/>
                 <Container component="main" className={classes.main}>
                     {children}
                 </Container>

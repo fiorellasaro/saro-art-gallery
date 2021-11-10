@@ -113,7 +113,7 @@ export default function Product(props) {
                 {product.inventory.available > 0 && (
                   <>
                     <ListItem>
-                      <Grid container justify="flex-end">
+                      <Grid container justifyContent="flex-end">
                         <Grid item xs={6}>
                           Quantity
                         </Grid>
