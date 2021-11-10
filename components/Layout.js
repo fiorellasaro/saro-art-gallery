@@ -1,5 +1,5 @@
 import { AppBar, CssBaseline, ThemeProvider, Toolbar, Link, Container, Box, Typography } from '@material-ui/core';
-import  React from 'react';
+import  React, { useState } from 'react';
 import { theme, useStyle } from '../utils/styles';
 import Head from 'next/head';
 import NextLink from 'next/link';
@@ -11,6 +11,11 @@ export default function Layout ({
     title = 'Saro Art',
 }) {
     const classes = useStyle();
+    const [navbarOpen, setNavbarOpen] = useState(false);
+
+    function handleNavbar() {
+      setNavbarOpen(!navbarOpen)
+    }
     return (
 
         <React.Fragment>
@@ -25,7 +30,7 @@ export default function Layout ({
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <NavBar/>
+                <NavBar navbarState={navbarOpen} handleNavbar={handleNavbar}/>
                 <Container component="main" className={classes.main}>
                     {children}
                 </Container>

@@ -31,3 +31,17 @@ a {
       @content
   }
 }
+
+.cards-container{
+  @include for-phone(){
+    padding: 0 !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    
+  }
+  div{
+    @include for-phone(){
+      width: -webkit-fill-available !important; 
+    }
+  }
+}

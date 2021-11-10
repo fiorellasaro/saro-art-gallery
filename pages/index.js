@@ -21,7 +21,7 @@ export default function Home(props) {
     <Layout title="Home" commercePublicKey={props.commercePublicKey}>
 
     {products.length === 0 && <Alert>No product found</Alert>}
-    <Grid style={{width:'100%',  padding: '60px'}} container spacing={2}>
+    <Grid style={{width:'100%',  padding: '60px'}} container spacing={2} className='cards-container'>
     {products.map((product) => {
       return(
         <Grid key={product.id} item md={3}>

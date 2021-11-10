@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 // import {NavLink} from 'react-router-dom';
 
 import { useSpring, animated } from 'react-spring';
@@ -18,10 +19,10 @@ const CollapseMenu = (props) => {
       }}
       >
         <NavLinks>
-          <li><a href="/" onClick={props.handleNavbar}>WORK</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>TAROT</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>ABOUT</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>CONTACT</a></li>
+          <li><Link href="/" onClick={props.handleNavbar}>WORK</Link></li>
+          <li><Link href="/" onClick={props.handleNavbar}>TAROT</Link></li>
+          <li><Link href="/" onClick={props.handleNavbar}>ABOUT</Link></li>
+          <li><Link href="/" onClick={props.handleNavbar}>CONTACT</Link></li>
           
             {/* <NavLink exact to="/" ></NavLink>
             <NavLink exact to="/work" activeStyle={{ borderBottom: "2px solid #ffffff"}} >WORK</NavLink>
