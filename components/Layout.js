@@ -1,9 +1,16 @@
 import { AppBar, CssBaseline, ThemeProvider, Toolbar, Link, Container, Box, Typography } from '@material-ui/core';
-import  React, { useState } from 'react';
+import  React, { useState, useContext, useEffect } from 'react';
 import { theme, useStyle } from '../utils/styles';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import NavBar from './Navbar/Navbar';
+
+import {
+    CART_RETRIEVE_REQUEST,
+    CART_RETRIEVE_SUCCESS,
+  } from '../utils/constants';
+import { Store } from './Store';
+import getCommerce from '../utils/commerce';
 
 export default function Layout ({
     children,
@@ -16,6 +23,19 @@ export default function Layout ({
     function handleNavbar() {
       setNavbarOpen(!navbarOpen)
     }
+
+    const {state, dispatch} = useContext(Store)
+    const { cart }  = state;
+    useEffect(() => {
+        const fetchCart = async () => {
+          const commerce = getCommerce(commercePublicKey);
+          dispatch({ type: CART_RETRIEVE_REQUEST });
+          const cartData = await commerce.cart.retrieve();
+          dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData });
+        };
+        fetchCart();
+      }, []);
+
     return (
 
         <React.Fragment>
@@ -30,7 +50,7 @@ export default function Layout ({
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <NavBar navbarState={navbarOpen} handleNavbar={handleNavbar}/>
+                <NavBar navbarState={navbarOpen} handleNavbar={handleNavbar} cart={cart}/>
                 <Container component="main" className={classes.main}>
                     {children}
                 </Container>

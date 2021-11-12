@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 // import {NavLink} from 'react-router-dom';
 import Link from 'next/link';
+import {CircularProgress, Badge} from '@material-ui/core';
+
 
 
 import Brand from "./Brand";
@@ -58,7 +60,22 @@ const Navbar = (props) => {
             <Link
                 href="/cart"
             >
-              CART
+                  {props.cart.loading ? (
+                    <CircularProgress />
+                  ) : props.cart.data.total_items > 0 ? (
+                    <Badge
+                    badgeContent={props.cart.data.total_items} 
+                    color="primary"
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    >
+                      CART
+                    </Badge>
+                  ) : (
+                    'CART'
+                  )}
             </Link>
           </NavLinks>
           
@@ -77,6 +94,7 @@ const Navbar = (props) => {
       <CollapseMenu 
         navbarState={props.navbarState} 
         handleNavbar={props.handleNavbar}
+        cart={props.cart}
       />
    </>
   )
@@ -139,11 +157,14 @@ export const FlexContainer = styled.div`
 `;
 
 const NavLinks = styled(animated.ul)`
+  & Badge{
+
+  }
   /* justify-self: end;
   list-style-type: none;
   margin: auto 0;
   
-  & a {
+  & a span {
     color: #dfe6e9;
     text-transform: uppercase;
     font-weight: 600;
@@ -168,6 +189,7 @@ const NavLinks = styled(animated.ul)`
   /* display: block; */
   /* margin: auto 0; */
   & a {
+
     color: #ffffff;
     font-weight: bolder;
     transition: all 300ms linear 0s;
@@ -190,6 +212,55 @@ const NavLinks = styled(animated.ul)`
       right: 0;
       border-bottom-color: inherit;
     }
+    
+    /* &:before {
+      content: '';
+      position: absolute;
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      border-bottom-width: 3px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent;
+    } */
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  & span.MuiBadge-root {
+    & span{
+      margin-right:-15px;
+      color: #000;
+      background-color: white;
+      border-radius: 30px;
+    }
+    color: #ffffff;
+    font-weight: bolder;
+    transition: all 300ms linear 0s;
+    /* display: block;
+    height: 100%; */
+    font-size: 20px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin: 0 1.5rem;
+    cursor: pointer;
+    &:hover {
+      /* color: #c0c0c0;
+      border-bottom: 1px solid #1b9481; */
+
+      border-bottom-color: inherit;
+      z-index: -1;
+    }
+    &:active {
+      left: 0;
+      right: 0;
+      border-bottom-color: inherit;
+      z-index: -1;
+    }
+    
     /* &:before {
       content: '';
       position: absolute;

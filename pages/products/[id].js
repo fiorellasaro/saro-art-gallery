@@ -17,7 +17,7 @@ import {Alert} from '@material-ui/lab';
 import { useContext, useState } from 'react';
 import { useStyle } from '../../utils/styles';
 import { Store } from '../../components/Store';
-// import { CART_RETRIEVE_SUCCESS } from '../../utils/constants';
+import { CART_RETRIEVE_SUCCESS } from '../../utils/constants';
 import Router from 'next/router';
 
 export default function Product(props) {
@@ -25,26 +25,26 @@ export default function Product(props) {
   const [quantity, setQuantity] = useState(1);
   const classes = useStyle();
 
-//   const { state, dispatch } = useContext(Store);
-//   const { cart } = state;
+
+  const {state, dispatch} = useContext(Store)
+  const { cart }  = state;
 
   const addToCartHandler = async () => {
-      console.log('jejeje')
-    // const commerce = getCommerce(props.commercePublicKey);
-    // const lineItem = cart.data.line_items.find(
-    //   (x) => x.product_id === product.id
-    // );
-    // if (lineItem) {
-    //   const cartData = await commerce.cart.update(lineItem.id, {
-    //     quantity: quantity,
-    //   });
-    //   dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
-    //   Router.push('/cart');
-    // } else {
-    //   const cartData = await commerce.cart.add(product.id, quantity);
-    //   dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
-    //   Router.push('/cart');
-    // }
+    const commerce = getCommerce(props.commercePublicKey);
+    const lineItem = cart.data.line_items.find(
+      (x) => x.product_id === product.id
+    );
+    if (lineItem) {
+      const cartData = await commerce.cart.update(lineItem.id, {
+        quantity: quantity,
+      });
+      dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
+     // Router.push('/cart');
+    } else {
+      const cartData = await commerce.cart.add(product.id, quantity);
+      dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
+     // Router.push('/cart');
+    }
   };
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 // import {NavLink} from 'react-router-dom';
+import {CircularProgress, Badge} from '@material-ui/core';
 
 import { useSpring, animated } from 'react-spring';
 
@@ -22,7 +23,31 @@ const CollapseMenu = (props) => {
           <li><Link href="/" onClick={props.handleNavbar}>WORK</Link></li>
           <li><Link href="/" onClick={props.handleNavbar}>TAROT</Link></li>
           <li><Link href="/" onClick={props.handleNavbar}>ABOUT</Link></li>
-          <li><Link href="/" onClick={props.handleNavbar}>CONTACT</Link></li>
+          <li><Link href="https://t.me/fiorellasaro" onClick={props.handleNavbar}>
+                <a target="_blank">CONTACT</a>
+              </Link>
+          </li>
+          <li>
+            <Link href="/cart">
+              {props.cart.loading ? (
+                      <CircularProgress />
+                    ) : props.cart.data.total_items > 0 ? (
+                      <Badge
+                      badgeContent={props.cart.data.total_items} 
+                      color="primary"
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      >
+                        CART
+                      </Badge>
+                    ) : (
+                      'CART'
+                    )}
+            </Link>
+          </li>
+
           
             {/* <NavLink exact to="/" ></NavLink>
             <NavLink exact to="/work" activeStyle={{ borderBottom: "2px solid #ffffff"}} >WORK</NavLink>
@@ -40,7 +65,7 @@ const CollapseMenu = (props) => {
 export default CollapseMenu;
 
 const CollapseWrapper = styled(animated.div)`
-  background: #1c1c1c;
+  background: #000;
   position: fixed;
   left: 0;
   right: 0;
@@ -55,6 +80,7 @@ const NavLinks = styled.ul`
   
   & li {
     transition: all 300ms linear 0s;
+    
   }
   & a {
     font-size: 1.4rem;
@@ -64,8 +90,30 @@ const NavLinks = styled.ul`
     text-decoration: none;
     cursor: pointer;
     &:hover {
-      color: #fdcb6e;
-      border-bottom: 1px solid #fdcb6e;
+      color: #fff;
+      border-bottom: 1px solid #fff;
     }
   }
+  & span.MuiBadge-root {
+    & span{
+      margin-right:-15px;
+      margin-top:15px;
+      color: #000;
+      background-color: white;
+      border-radius: 30px;
+    }
+    font-size: 1.4rem;
+    line-height: 2;
+    color: #dfe6e9;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+    
+  }
+
+  
 `;
