@@ -6,6 +6,7 @@ export const theme = createTheme({
             fontSize: '2.2rem',
             fontWeight: 400,
             margin: '2rem 0',
+            color: 'white',
         },
         h2: {
             fontSize: '1.8rem',
@@ -32,7 +33,9 @@ export const theme = createTheme({
             default: '#000',      
         },
 
-    }
+    },
+
+
 });
 
 export const useStyle = makeStyles ( (theme) => ({
@@ -66,4 +69,10 @@ export const useStyle = makeStyles ( (theme) => ({
         minWidth: 120,
         width: '100%',
       },
+      thead:{
+          color: 'white',
+      },
+      tbody:{
+        color: 'white',
+    },
 }));

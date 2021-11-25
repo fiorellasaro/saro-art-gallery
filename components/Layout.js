@@ -36,6 +36,9 @@ export default function Layout ({
         fetchCart();
       }, []);
 
+
+      const today = new Date();
+      const year = today.getFullYear();
     return (
 
         <React.Fragment>
@@ -57,8 +60,8 @@ export default function Layout ({
                 <Container maxWidth="md" component="footer">
                     <Box mt={5}>
                         <Typography variant="body2" color="secondary" align="center">
-                            {`© `}
-                            Saro Art 2021
+                            {`© `} 
+                            Saro Art {year}
                             {`.`}
                         </Typography>
                     </Box>

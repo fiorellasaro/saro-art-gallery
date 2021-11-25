@@ -62,7 +62,7 @@ const Navbar = (props) => {
             >
                   {props.cart.loading ? (
                     <CircularProgress />
-                  ) : props.cart.data.total_items > 0 ? (
+        ) : props.cart.data.total_items > 0 ? (
                     <Badge
                     badgeContent={props.cart.data.total_items} 
                     color="primary"

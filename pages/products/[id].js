@@ -39,11 +39,11 @@ export default function Product(props) {
         quantity: quantity,
       });
       dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
-     // Router.push('/cart');
+      Router.push('/cart');
     } else {
       const cartData = await commerce.cart.add(product.id, quantity);
       dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
-     // Router.push('/cart');
+      Router.push('/cart');
     }
   };
 
