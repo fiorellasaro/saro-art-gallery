@@ -14,14 +14,15 @@ import {
 import Layout from "../components/Layout";
 import getCommerce from "../utils/commerce";
 import {Alert} from '@material-ui/lab';
+import MainBanner from "../components/MainBanner/MainBanner";
 
 export default function Home(props) {
   const { products } = props;
   return (
     <Layout title="Home" commercePublicKey={props.commercePublicKey}>
-
+    <MainBanner></MainBanner>
     {products.length === 0 && <Alert>No product found</Alert>}
-    <Grid style={{width:'100%',  padding: '60px'}} container spacing={2} className='cards-container'>
+    <Grid id="gallery" style={{width:'100%',  padding: '60px'}} container spacing={2} className='cards-container'>
     {products.map((product) => {
       return(
         <Grid key={product.id} item md={3}>

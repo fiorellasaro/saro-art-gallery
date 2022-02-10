@@ -12,9 +12,12 @@ a {
   text-decoration: none;
 }
 
+
+
 * {
   box-sizing: border-box;
   font-family: "serenity", sans-serif !important;
+  scroll-behavior: smooth !important;
 }
 
 .MuiCardMedia-img{
